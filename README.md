@@ -1,4 +1,4 @@
-# The Go Dev's
+# The Go Dev's Best Practices Guide
 
 - [Introduction](#introduction)
 - [Style](#style)
