@@ -1,0 +1,24 @@
+# The Go Dev's
+
+- [Introduction](introduction.md)
+- Style
+  - [Package Names](package-names.md)
+  - [Directory Names](directory-names.md)
+  - [Filenames](filenames.md)
+  - [Variable Names](variable-names.md)
+  - [Variable Declarations](variable-declarations.md)
+  - [Function Names](function-names.md)
+  - [Interface Names](interface-names.md)
+  - [Map Names](map-names.md)
+  - [Health Check Names](health-check-names.md)
+  - [Mock Package Names](mock-package-names.md)
+- Guidelines
+  - [Using Factory Functions](using-factory-functions.md)
+  - [Using Interface Factories](using-interface-factories.md)
+  - [Testing](testing.md)
+- Optimisation
+  - [Building Strings](building-strings.md)
+  - [Maps](maps.md)
+  - [Slices / Arrays](slices-arrays.md)
+  - [Types](types.md)
+- [References](references.md)
