@@ -14,7 +14,7 @@
   - [Mock Package Names](#mock-package-names)
 - [Guidelines](#guidelines)
   - [Using Factory Functions](#using-factory-functions)
-  - [Using Interface Factories](#using-interface-factories)
+  - [Using Interfaces](#using-interfaces)
   - [Testing](#testing)
 - [Optimisation](#optimisation)
   - [Building Strings](#building-strings)
@@ -438,9 +438,9 @@ func New(n string, a int) *User {
 </tbody>
 </table>
 
-### Using Interface Factories
+### Using Interfaces
 
-Rather than revealing the fields on an object by using a regular factory function, we can return an interface instead. This allows us to keep the object private and only export the interface.
+Interfaces should be declared in the package they are used, not in the same package as the implementing struct. Only the package that uses the interface has knowledge of the required methods. Remember, you accept interfaces and return structs.
 
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -448,44 +448,20 @@ Rather than revealing the fields on an object by using a regular factory functio
 <tr><td>
 
 ```go
-package ops
 
-type Operations struct {
-  // ...
-}
-
-func (o *Operations) DoThis() {}
-
-func New() Operations {
-  return Operations{}
-}
 ```
 
 </td><td>
 
 ```go
-package ops
 
-type Operator interface {
-  DoThis()
-}
-
-type ops struct {
-  // ...	
-}
-
-func (o *ops) DoThis() {}
-
-func New() Operator {
-  return &ops{}
-}
 ```
 </td>
 </tr>
 </tbody>
 </table>
 
-*It is worth noting that the 'revive' linter will throw an error. We think this is a great way to hide implementation and as a result turn off the linter.*
+Go interfaces are implemented implicitly which allows you to specify only the required methods, leading to a reduction in interface bloat. By returning a struct instead of an interface, we reduce preemptive interface creation too. Interfaces should only be created when they are needed.
 
 ### Testing
 
