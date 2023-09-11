@@ -14,7 +14,7 @@
   - [Mock Package Names](mock-package-names.md)
 - Guidelines
   - [Using Factory Functions](using-factory-functions.md)
-  - [Using Interface Factories](using-interface-factories.md)
+  - [Using Interfaces](using-interfaces.md)
   - [Testing](testing.md)
 - Optimisation
   - [Building Strings](building-strings.md)

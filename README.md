@@ -14,7 +14,7 @@
   - [Mock Package Names](#mock-package-names)
 - [Guidelines](#guidelines)
   - [Using Factory Functions](#using-factory-functions)
-  - [Using Interface Factories](#using-interface-factories)
+  - [Using Interfaces](#using-interfaces)
   - [Testing](#testing)
 - [Optimisation](#optimisation)
   - [Building Strings](#building-strings)
@@ -438,9 +438,9 @@ func New(n string, a int) *User {
 </tbody>
 </table>
 
-### Using Interface Factories
+### Using Interfaces
 
-Rather than revealing the fields on an object by using a regular factory function, we can return an interface instead. This allows us to keep the object private and only export the interface.
+Interfaces should be declared in the package they are used, not in the same package as the implementing struct. Only the package that uses the interface has knowledge of the required methods. Remember, you accept interfaces and return structs.
 
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -448,36 +448,85 @@ Rather than revealing the fields on an object by using a regular factory functio
 <tr><td>
 
 ```go
-package ops
-
-type Operations struct {
-  // ...
+package producer  
+  
+type Fooer interface {  
+  Foo()  
+  Bar()  
+}  
+  
+type foo struct{}  
+  
+func (f *foo) Foo() {}  
+  
+func (f *foo) Bar() {}  
+  
+func New() Fooer { // Returning the interface.  
+  return &foo{}  
 }
 
-func (o *Operations) DoThis() {}
+- - - - - - - - -
 
-func New() Operations {
-  return Operations{}
+package main  
+  
+import "XXX/producer"  
+  
+type app struct {  
+  fooer producer.Fooer  
+}  
+  
+func (a app) start() {  
+  a.fooer.Foo()  
+  // a.fooer.Bar() is available.
+}  
+  
+func main() {  
+  a := app{  
+   fooer: producer.New(),  
+  }  
+  a.start()  
 }
 ```
 
 </td><td>
 
 ```go
-package ops
-
-type Operator interface {
-  DoThis()
+package producer  
+  
+type foo struct{}  
+  
+func (f *foo) Foo() {}  
+  
+func (f *foo) Bar() {}  
+  
+func New() *foo {  
+  return &foo{}  
 }
 
-type ops struct {
-  // ...	
-}
+- - - - - - - - -
 
-func (o *ops) DoThis() {}
-
-func New() Operator {
-  return &ops{}
+package main  
+  
+import "XXX/producer"  
+  
+type fooer interface {  
+  Foo() 
+}  
+  
+type app struct {  
+  fooer fooer  
+}  
+  
+func (a app) start() {  
+  a.fooer.Foo() 
+  // We do not have access to Bar()
+}  
+  
+func main() {  
+  a := app{  
+   fooer: producer.New(),  
+  }  
+  a.start()  
 }
 ```
 </td>
@@ -485,7 +534,7 @@ func New() Operator {
 </tbody>
 </table>
 
-*It is worth noting that the 'revive' linter will throw an error. We think this is a great way to hide implementation and as a result turn off the linter.*
+Go interfaces are implemented implicitly which allows you to specify only the required methods, leading to a reduction in interface bloat. By returning a struct instead of an interface, we reduce preemptive interface creation too. Interfaces should only be created when they are needed.
 
 ### Testing
 
