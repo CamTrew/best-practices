@@ -35,7 +35,7 @@ type app struct {
   
 func (a app) start() {  
   a.fooer.Foo()  
-  // a.fooer.Bar() is available when it is not required.  
+  // a.fooer.Bar() is available.
 }  
   
 func main() {  
