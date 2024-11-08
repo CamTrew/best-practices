@@ -6,15 +6,15 @@ When checking if a map contains a key, name the variable `ok`.
 <tr><td>
 
 ```go
-name, nameIsPresent := userMap["TheGoDev"]
-name, isPresent := userMap["TheGoDev"]
-name, exists := userMap["TheGoDev"]
+name, nameIsPresent := userMap["CamTrew"]
+name, isPresent := userMap["CamTrew"]
+name, exists := userMap["CamTrew"]
 ```
 
 </td><td>
 
 ```go
-name, ok := userMap["TheGoDev"]
+name, ok := userMap["CamTrew"]
 ```
 </td>
 </tr>

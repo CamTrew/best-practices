@@ -1,4 +1,4 @@
-# The Go Dev's Best Practices Guide
+# Cam Trew's Best Practices Guide
 
 - [Introduction](introduction.md)
 - Style

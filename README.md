@@ -1,4 +1,4 @@
-# The Go Dev's Best Practices Guide
+# Cam Trew's Best Practices Guide
 
 - [Introduction](#introduction)
 - [Style](#style)
@@ -197,14 +197,14 @@ There are a number of ways to declare variables in Go. As a result, it is better
 
 ```go
 person := Person{}
-var person = Person{Name: "TheGoDev"}
+var person = Person{Name: "CamTrew"}
 ```
 
 </td><td>
 
 ```go
 var person Person
-person := Person{Name: "TheGoDev"}
+person := Person{Name: "CamTrew"}
 ```
 </td>
 </tr>
@@ -219,14 +219,14 @@ Avoid declaring new variables as pointers, as it is better to see the effect of 
 <tr><td>
 
 ```go
-person := &Person{Name: "TheGoDev"}
+person := &Person{Name: "CamTrew"}
 ProcessPerson(person)
 ```
 
 </td><td>
 
 ```go
-person := Person{Name: "TheGoDev"}
+person := Person{Name: "CamTrew"}
 ProcessPerson(&person)
 ```
 </td>
@@ -331,15 +331,15 @@ When checking if a map contains a key, name the variable `ok`.
 <tr><td>
 
 ```go
-name, nameIsPresent := userMap["TheGoDev"]
-name, isPresent := userMap["TheGoDev"]
-name, exists := userMap["TheGoDev"]
+name, nameIsPresent := userMap["CamTrew"]
+name, isPresent := userMap["CamTrew"]
+name, exists := userMap["CamTrew"]
 ```
 
 </td><td>
 
 ```go
-name, ok := userMap["TheGoDev"]
+name, ok := userMap["CamTrew"]
 ```
 </td>
 </tr>

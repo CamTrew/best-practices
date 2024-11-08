@@ -7,14 +7,14 @@ There are a number of ways to declare variables in Go. As a result, it is better
 
 ```go
 person := Person{}
-var person = Person{Name: "TheGoDev"}
+var person = Person{Name: "CamTrew"}
 ```
 
 </td><td>
 
 ```go
 var person Person
-person := Person{Name: "TheGoDev"}
+person := Person{Name: "CamTrew"}
 ```
 </td>
 </tr>
@@ -29,14 +29,14 @@ Avoid declaring new variables as pointers, as it is better to see the effect of 
 <tr><td>
 
 ```go
-person := &Person{Name: "TheGoDev"}
+person := &Person{Name: "CamTrew"}
 ProcessPerson(person)
 ```
 
 </td><td>
 
 ```go
-person := Person{Name: "TheGoDev"}
+person := Person{Name: "CamTrew"}
 ProcessPerson(&person)
 ```
 </td>
